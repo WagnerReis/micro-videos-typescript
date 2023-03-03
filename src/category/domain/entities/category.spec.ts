@@ -1,5 +1,6 @@
-import Category from "./category";
+import Category, { CategoryProperties } from "./category";
 import { omit } from "lodash";
+import { validate as uuidValidate } from "uuid";
 
 describe("Category Unit tests", () => {
   test("contructor of category", () => {
@@ -58,6 +59,22 @@ describe("Category Unit tests", () => {
       name: "Movie",
       is_active: true,
       created_at,
+    });
+  });
+
+  test("id field", () => {
+    type CategoryData = { props: CategoryProperties; id?: string };
+    const data: CategoryData[] = [
+      { props: { name: "Movie" } },
+      { props: { name: "Movie" }, id: null },
+      { props: { name: "Movie" }, id: undefined },
+      { props: { name: "Movie" }, id: "1bc2f50e-2cbe-4e65-a1e9-332cdfeda308" },
+    ];
+
+    data.forEach((i) => {
+      const category = new Category(i.props, i.id);
+      expect(category.id).not.toBeNull();
+      expect(uuidValidate(category.id)).toBeTruthy();
     });
   });
 
