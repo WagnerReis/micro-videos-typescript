@@ -1,4 +1,4 @@
-import UniqueEntityId from "../domain/unique-entity-id.vo";
+import UniqueEntityId from "./unique-entity-id.vo";
 import { validate as uuidValidate } from "uuid";
 
 function spyValidationMethod() {
