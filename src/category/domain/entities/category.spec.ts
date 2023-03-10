@@ -74,7 +74,7 @@ describe("Category Unit tests", () => {
     data.forEach((i) => {
       const category = new Category(i.props, i.id);
       expect(category.id).not.toBeNull();
-      expect(category.id).toBeInstanceOf(UniqueEntityId);
+      expect(category.uniqueEntityId).toBeInstanceOf(UniqueEntityId);
     });
   });
 
