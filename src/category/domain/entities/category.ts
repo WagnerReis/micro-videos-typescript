@@ -21,6 +21,10 @@ export default class Category extends Entity<CategoryProperties> {
     return this.props.name;
   }
 
+  private set name(value) {
+    this.props.name = value;
+  } 
+
   get description(): string | undefined {
     return this.props.description;
   }
@@ -30,7 +34,7 @@ export default class Category extends Entity<CategoryProperties> {
   }
 
   update(props: { name: string, description: string }) {
-    this.props.name = props.name;
+    this.name = props.name;
     this.props.description = props.description;
   }
 

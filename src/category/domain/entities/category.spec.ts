@@ -78,9 +78,12 @@ describe("Category Unit tests", () => {
     });
   });
 
-  test("getter of name props", () => {
+  test("getter and setter of name props", () => {
     const category = new Category({ name: "Movie" });
     expect(category.name).toBe("Movie");
+
+    category["name"] = "other name";
+    expect(category.name).toBe("other name");
   });
 
   test("getter and setter of description props", () => {
