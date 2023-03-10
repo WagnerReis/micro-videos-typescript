@@ -130,4 +130,28 @@ describe("Category Unit tests", () => {
     });
     expect(category.created_at).toBe(created_at);
   });
+
+  it("should be able update the name and description of category", () => {
+    let category = new Category({ name: "Movie", description: "Movie description" });
+
+    const propsUpdate = {
+      name: "Movie Updated", 
+      description: "Description Updated",
+    };
+
+    category.update(propsUpdate);
+
+    expect(category.name).toBe(propsUpdate.name)
+    expect(category.description).toBe(propsUpdate.description)
+  });
+
+  it("should be able activate and deactivate a category", () => {
+    let category = new Category({ name: "Movie", description: "Movie description" });
+
+    category.activate();
+    expect(category.is_active).toBeTruthy();
+
+    category.deactivate();
+    expect(category.is_active).not.toBeTruthy();
+  });
 });

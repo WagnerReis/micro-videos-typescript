@@ -29,6 +29,19 @@ export default class Category extends Entity<CategoryProperties> {
     this.props.description = value ?? null;
   }
 
+  update(props: { name: string, description: string }) {
+    this.props.name = props.name;
+    this.props.description = props.description;
+  }
+
+  activate() {
+    this.props.is_active = true;
+  }
+
+  deactivate() {
+    this.props.is_active = false;
+  }
+
   get is_active() {
     return this.props.is_active;
   }
