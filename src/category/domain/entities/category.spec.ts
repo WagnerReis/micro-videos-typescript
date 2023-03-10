@@ -78,9 +78,12 @@ describe("Category Unit tests", () => {
     });
   });
 
-  test("getter of name props", () => {
+  test("getter and setter of name props", () => {
     const category = new Category({ name: "Movie" });
     expect(category.name).toBe("Movie");
+
+    category["name"] = "other name";
+    expect(category.name).toBe("other name");
   });
 
   test("getter and setter of description props", () => {
@@ -129,5 +132,29 @@ describe("Category Unit tests", () => {
       created_at,
     });
     expect(category.created_at).toBe(created_at);
+  });
+
+  it("should be able update the name and description of category", () => {
+    let category = new Category({ name: "Movie", description: "Movie description" });
+
+    const propsUpdate = {
+      name: "Movie Updated", 
+      description: "Description Updated",
+    };
+
+    category.update(propsUpdate);
+
+    expect(category.name).toBe(propsUpdate.name)
+    expect(category.description).toBe(propsUpdate.description)
+  });
+
+  it("should be able activate and deactivate a category", () => {
+    let category = new Category({ name: "Movie", description: "Movie description" });
+
+    category.activate();
+    expect(category.is_active).toBeTruthy();
+
+    category.deactivate();
+    expect(category.is_active).not.toBeTruthy();
   });
 });

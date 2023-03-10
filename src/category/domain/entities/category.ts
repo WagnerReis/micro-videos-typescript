@@ -21,12 +21,29 @@ export default class Category extends Entity<CategoryProperties> {
     return this.props.name;
   }
 
+  private set name(value) {
+    this.props.name = value;
+  } 
+
   get description(): string | undefined {
     return this.props.description;
   }
 
   private set description(value: string) {
     this.props.description = value ?? null;
+  }
+
+  update(props: { name: string, description: string }) {
+    this.name = props.name;
+    this.props.description = props.description;
+  }
+
+  activate() {
+    this.props.is_active = true;
+  }
+
+  deactivate() {
+    this.props.is_active = false;
   }
 
   get is_active() {
